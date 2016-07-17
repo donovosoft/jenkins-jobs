@@ -1,0 +1,19 @@
+name: Build_Site_Wordpress
+description: 'Build a website with wordpress, provisioning AWS infraestructure'
+project-type: freestyle
+display-name: 'Build_Site_Wordpress'
+scm:
+  - git:
+      url: https://github.com/donovosoft/ansible-scripts.git
+      branches:
+        - 'master'
+      skip-tag: true
+parameters:
+  - string:
+      name: Hostname
+      description: 'HostName for the new site. For example: donovosoft.com'
+
+builders:
+  - shell: |
+      #!/bin/bash 
+      echo "Creating website $Hostname"

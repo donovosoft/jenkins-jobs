@@ -1,0 +1,7 @@
+- job-template:
+    !include: buildsite_wordpress.tmpl.yml
+
+- project:
+     name: BuildSite_Wordpress
+     jobs:
+       - 'Build_Site_Wordpress'

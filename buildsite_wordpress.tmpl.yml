@@ -17,7 +17,8 @@ builders:
   - shell: |
       #!/bin/bash 
       echo "Creating website $Hostname"
-      `export AWS_SECRET_ACCES_KEY=$AWS_SECRET_ACCES_KEY && export AWS_SECRET_KEY_ID=$AWS_SECRET_KEY_ID
-      `cd aws_env && ./ec2.py --refresh-cache`
-      `cd ..`
-      `ansible-playbook -i aws_env conf_playbooks/wordpress_site.yml -e vhost_name=$Hostname -vvvv`
+      export EC2_REGION=us-east-1
+      export ANSIBLE_FORCE_COLOR=true
+      echo "Running CloudFormation Scripts"
+      echo "Running Ansible conf_playbooks"
+      ansible-playbook -vvvv -D -i aws_env conf_playbooks/wordpress_site.yml -e vhost_name=$Hostname

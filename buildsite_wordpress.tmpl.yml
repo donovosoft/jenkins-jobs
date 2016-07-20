@@ -17,7 +17,7 @@ builders:
   - shell: |
       #!/bin/bash 
       echo "Creating website $Hostname"
-      export EC2_REGION=us-east-1
+      export EC2_REGION=us-west-1
       export ANSIBLE_FORCE_COLOR=true
       echo "Running CloudFormation Scripts"
       echo "Running Ansible conf_playbooks"

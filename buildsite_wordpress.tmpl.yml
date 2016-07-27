@@ -1,0 +1,24 @@
+name: Build_Site_Wordpress
+description: 'Build a website with wordpress, provisioning AWS infraestructure'
+project-type: freestyle
+display-name: 'Build_Site_Wordpress'
+scm:
+  - git:
+      url: https://github.com/donovosoft/ansible-scripts.git
+      branches:
+        - 'master'
+      skip-tag: true
+parameters:
+  - string:
+      name: Hostname
+      description: 'HostName for the new site. For example: donovosoft.com'
+
+builders:
+  - shell: |
+      #!/bin/bash 
+      echo "Creating website $Hostname"
+      export EC2_REGION=us-west-1
+      export ANSIBLE_FORCE_COLOR=true
+      echo "Running CloudFormation Scripts"
+      echo "Running Ansible conf_playbooks"
+      ansible-playbook -vvvv -D -i aws_env conf_playbooks/wordpress_site.yml -e vhost_name=$Hostname
